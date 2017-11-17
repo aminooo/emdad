@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/iosRed</color>
+    <color name="colorPrimaryDark">@color/colorFlatPomegranate</color>
+    <color name="colorAccent">@color/iosBlue</color>
+
+    <color name="colorFlatTurquoise">#1abc9c</color>
+    <color name="colorFlatGreenSea">#16a085</color>
+    <color name="colorFlatSunFlower">#f1c40f</color>
+    <color name="colorFlatOrange">#f39c12</color>
+    <color name="colorFlatEmreald">#2ecc71</color>
+    <color name="colorFlatNephritis">#27ae60</color>
+    <color name="colorFlatCarrot">#e67e22</color>
+    <color name="colorFlatPumpkin">#d35400</color>
+    <color name="colorFlatPeterRiver">#3498db</color>
+    <color name="colorFlatBleizeHole">#2980b9</color>
+    <color name="colorFlatAlizarin">#e74c3c</color>
+    <color name="colorFlatPomegranate">#c0392b</color>
+    <color name="colorFlatAmethyst">#9b59b6</color>
+    <color name="colorFlatWisteria">#8e44ad</color>
+    <color name="colorFlatClouds">#ecf0f1</color>
+    <color name="colorFlatCloudsTrans">#ddecf0f1</color>
+    <color name="colorFlatSilver">#bdc3c7</color>
+    <color name="colorFlatWetAsphalt">#34495e</color>
+    <color name="colorFlatMidnightBlue">#2c3e50</color>
+    <color name="colorFlatConcrete">#95a5a6</color>
+    <color name="colorFlatAsbestos">#7f8c8d</color>
+    <color name="colorDarkText">#363c3d</color>
+
+    <color name="iosRed">#ff3c31</color>
+    <color name="iosYellow">#ffcc02</color>
+    <color name="iosGreen">#4dd965</color>
+    <color name="iosBlue">#027bff</color>
+    <color name="iosPink">#ff2e56</color>
+</resources>

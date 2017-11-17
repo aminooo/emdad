@@ -1,0 +1,27 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout">
+
+    <fragment
+        android:id="@+id/map"
+        class="com.google.android.gms.maps.SupportMapFragment"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <View
+        android:id="@+id/v"
+        android:layout_centerInParent="true"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_above="@id/v"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/center_img"
+        app:srcCompat="@drawable/ic_add_location_red_48dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp" />
+</RelativeLayout>
