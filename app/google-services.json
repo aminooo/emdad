@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "163292599517",
+    "firebase_url": "https://earthquake-256b6.firebaseio.com",
+    "project_id": "earthquake-256b6",
+    "storage_bucket": "earthquake-256b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163292599517:android:e77e3656c1c2a9ed",
+        "android_client_info": {
+          "package_name": "com.upsym.emdad.earthquake"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "163292599517-jkp50l6nh7ui9p8ilp1tcrnnui1e61sp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.upsym.emdad.earthquake",
+            "certificate_hash": "736d00e1219a4034082a6526d21ba43892139f07"
+          }
+        },
+        {
+          "client_id": "163292599517-8fsuequ9afshnmn8kvjusgihon1n0ath.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGd4lCWau4uImG5DdnPwsUJM9yRnOWRfo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "163292599517-8fsuequ9afshnmn8kvjusgihon1n0ath.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

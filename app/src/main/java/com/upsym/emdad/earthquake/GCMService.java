@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
  * Created by Karo on 11/17/2017.
  */
 
@@ -80,7 +81,6 @@ public class GCMService extends GcmTaskService {
                         List<EventPoint> requests = new Gson()
                                 .fromJson(result.get("requested"), new TypeToken<List<EventPoint>>(){}.getType());
                         database.getEventPointDao().insertAll(requests);
-                        return;
                     }
                 } else {
                     Logger.e(e.toString());

@@ -50,6 +50,7 @@ import com.google.maps.android.clustering.ClusterItem;
 import com.google.maps.android.clustering.ClusterManager;
 import com.orhanobut.logger.Logger;
 import com.rengwuxian.materialedittext.MaterialEditText;
+import com.upsym.emdad.earthquake.CustomClusterRenderer;
 import com.upsym.emdad.earthquake.PermissionUtils;
 import com.upsym.emdad.earthquake.R;
 import com.upsym.emdad.earthquake.database.EventPoint;
@@ -111,9 +112,10 @@ public class MainActivity extends AppCompatActivity
         mMap.setOnMyLocationClickListener(this);
         enableMyLocation();
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(35.6892 , 51.3890), 10));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(34.3277 , 47.0778), 10));
 
         mClusterManager = new CustomClusterManager<Item>(this, mMap);
+        mClusterManager.setRenderer(new CustomClusterRenderer(this, mMap, mClusterManager));
         mMap.setOnCameraIdleListener(mClusterManager);
         mMap.setOnMarkerClickListener(mClusterManager);
         mClusterManager.setOnClusterClickListener(new ClusterManager.OnClusterClickListener<Item>() {
@@ -292,9 +294,10 @@ public class MainActivity extends AppCompatActivity
         view.setLayoutParams(new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomDialog);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this, android.R.style.Theme_Light_NoTitleBar_Fullscreen);
         final MaterialEditText title = view.findViewById(R.id.title);
         final MaterialEditText address = view.findViewById(R.id.address);
+        final MaterialEditText count = view.findViewById(R.id.count);
 
         LinearLayout linearLayout = view.findViewById(R.id.main_linear);
         final RadioGroup radioGroup = new RadioGroup(this);
@@ -302,6 +305,7 @@ public class MainActivity extends AppCompatActivity
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
         ));
+
         radioGroup.setGravity(Gravity.RIGHT);
         for(ValidPackage pack : presenter.getValidPackages()){
             RadioButton radioButton = new RadioButton(this);
@@ -310,6 +314,7 @@ public class MainActivity extends AppCompatActivity
             radioGroup.addView(radioButton);
         }
         linearLayout.addView(radioGroup);
+        radioGroup.check(radioGroup.getChildAt(0).getId());
         view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -324,7 +329,11 @@ public class MainActivity extends AppCompatActivity
                     makeToast("لطفا همه فیلدهارا پر کنید");
                     return;
                 }
-                presenter.saveNewEvent(getCenter(), title.getText().toString(), address.getText().toString(), 1,radioGroup.indexOfChild(radioGroup.findViewById(radioGroup.getCheckedRadioButtonId())));
+                if("".equals(count.getText().toString())){
+                    makeToast("لطفا همه فیلدهارا پر کنید");
+                    return;
+                }
+                presenter.saveNewEvent(getCenter(), title.getText().toString(), address.getText().toString(), (Integer.valueOf(count.getText().toString()) == 0) ? 1 : Integer.valueOf(count.getText().toString()),radioGroup.indexOfChild(radioGroup.findViewById(radioGroup.getCheckedRadioButtonId())));
                 dialog.dismiss();
             }
         });
@@ -339,7 +348,10 @@ public class MainActivity extends AppCompatActivity
     public void reloadMap(List<EventPoint> markerData) {
         mClusterManager.clearItems();
         for(EventPoint point : markerData){
-            mClusterManager.addItem(new Item(point.getLat(), point.getLng(), "", String.valueOf(point.getId())));
+            Item item = new Item(point.getLat(), point.getLng(), "", String.valueOf(point.getId()), point.getStatus());
+            mClusterManager.addItem(
+                    item
+            );
         }
         mClusterManager.cluster();
     }
@@ -409,9 +421,20 @@ public class MainActivity extends AppCompatActivity
         final TextView title = view.findViewById(R.id.title);
         final TextView details = view.findViewById(R.id.details);
 
-        title.setText(eventPoint.getTitle());
 
-        details.setText(eventPoint.getAddress() + "\n");
+        if(eventPoint.getTitle() != null) title.setText(eventPoint.getTitle());
+        else title.setText("بدون عنوان");
+        String status = "نامشخص";
+        if ("waiting".equals(eventPoint.getStatus())){
+            status = "در حال انتظار";
+        } else if("on_the_way".equals(eventPoint.getStatus())){
+            status = "در مرحله پردازش و ارسال";
+        } else if("delivered".equals(eventPoint.getStatus())){
+            status = "تحویل داده شده";
+        }
+
+        details.setText("تعداد: " + eventPoint.getCount() + "\n" + "آدرس و توضیحات: " + eventPoint.getAddress()
+                        + "\n" + "وضعیت: " + status);
         view.findViewById(R.id.done).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -425,6 +448,22 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    @OnClick(R.id.refresh)
+    public void onRefreshClick(){
+        findViewById(R.id.refresh).animate().rotationBy(360f).setDuration(700).start();
+        presenter.onRefreshClick();
+    }
 
+
+    boolean isMap = true;
+    @OnClick(R.id.change_layer)
+    public void onChangeLayer(){
+        if(isMap){
+            mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        } else {
+            mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        }
+        isMap = !isMap;
+    }
 
 }

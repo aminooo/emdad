@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/EarthGitHub.iml" filepath="$PROJECT_DIR$/EarthGitHub.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/earthquick.iml" filepath="$PROJECT_DIR$/earthquick.iml" />
     </modules>
   </component>
 </project>

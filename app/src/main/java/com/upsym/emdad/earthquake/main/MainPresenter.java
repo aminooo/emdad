@@ -24,4 +24,7 @@ public interface MainPresenter {
     EventPoint getEventPoint(Long aLong);
 
     List<ValidPackage> getValidPackages();
+
+    void onRefreshClick();
+
 }

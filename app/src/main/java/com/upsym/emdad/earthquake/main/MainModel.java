@@ -16,9 +16,12 @@ public interface MainModel  {
 
     void saveNewEvent(LatLng center, String title, String address, int count, int packageId);
 
+    void requestedDataFromServer();
+
     LiveData<List<EventPoint>> getMarkerData();
 
     EventPoint getEventPoint(Long aLong);
 
     List<ValidPackage> getValidPackages();
+
 }

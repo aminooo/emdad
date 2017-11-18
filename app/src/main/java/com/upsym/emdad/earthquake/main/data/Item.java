@@ -11,6 +11,7 @@ public class Item implements ClusterItem {
     private final LatLng mPosition;
     private String mTitle;
     private String mSnippet;
+    private String status;
 
     public Item(double lat, double lng) {
         mPosition = new LatLng(lat, lng);
@@ -20,6 +21,13 @@ public class Item implements ClusterItem {
         mPosition = new LatLng(lat, lng);
         mTitle = title;
         mSnippet = snippet;
+    }
+
+    public Item(double lat, double lng, String mTitle, String mSnippet, String status) {
+        mPosition = new LatLng(lat, lng);
+        this.mTitle = mTitle;
+        this.mSnippet = mSnippet;
+        this.status = status;
     }
 
     @Override
@@ -35,5 +43,9 @@ public class Item implements ClusterItem {
     @Override
     public String getSnippet() {
         return mSnippet;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }

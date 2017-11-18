@@ -55,4 +55,9 @@ class MainPresenterImpl implements MainPresenter {
     public List<ValidPackage> getValidPackages() {
         return model.getValidPackages();
     }
+
+    @Override
+    public void onRefreshClick() {
+        model.requestedDataFromServer();
+    }
 }
